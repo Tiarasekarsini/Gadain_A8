@@ -17,17 +17,14 @@ class User {
     required this.photoUrl,
   });
 
-  factory User.fromDocument(DocumentSnapshot doc){
+  factory User.fromDocument(DocumentSnapshot doc) {
     return User(
-      id: doc['id'],
-      email: doc['email'],
-      balance: doc['balance'],
-      displayName: doc['displayName'],
-      photoUrl: doc['photoUrl']
-    );
+        id: doc['id'],
+        email: doc['email'],
+        balance: doc['balance'],
+        displayName: doc['displayName'],
+        photoUrl: doc['photoUrl']);
   }
-
-  
 
   User copyWith({
     String? id,
@@ -66,10 +63,10 @@ class User {
     );
   }
 
-
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User.fromJson(String source) =>
+      User.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -79,21 +76,20 @@ class User {
   @override
   bool operator ==(covariant User other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.balance == balance &&
-      other.email == email &&
-      other.displayName == displayName &&
-      other.photoUrl == photoUrl;
+
+    return other.id == id &&
+        other.balance == balance &&
+        other.email == email &&
+        other.displayName == displayName &&
+        other.photoUrl == photoUrl;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      balance.hashCode ^
-      email.hashCode ^
-      displayName.hashCode ^
-      photoUrl.hashCode;
+        balance.hashCode ^
+        email.hashCode ^
+        displayName.hashCode ^
+        photoUrl.hashCode;
   }
 }

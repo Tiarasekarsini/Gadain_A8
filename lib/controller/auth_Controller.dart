@@ -7,7 +7,6 @@ import 'package:gadain/model/user.dart' as usermod;
 
 import '../view/create_account.dart';
 
-
 class AuthController {
   void createUserInFirestore(context) async {
     //check if exist
@@ -34,7 +33,6 @@ class AuthController {
     print(currentUser);
   }
 
-
   login() async {
     //with credential
     final GoogleSignInAccount? gUser = await googleSignIn.signIn();
@@ -53,7 +51,8 @@ class AuthController {
 
     if (currentUser != null) {
       // Get the authentication token
-      final GoogleSignInAuthentication googleAuth = await currentUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await currentUser.authentication;
 
       // Create a Google credential
       final OAuthCredential credential = GoogleAuthProvider.credential(
@@ -79,7 +78,7 @@ class AuthController {
     googleSignIn.disconnect();
   }
 
-  deleteUser(id)async{
+  deleteUser(id) async {
     final user = FirebaseFirestore.instance.collection('users');
     await user.doc(id).delete();
   }

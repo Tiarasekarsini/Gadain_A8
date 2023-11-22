@@ -30,9 +30,7 @@ class _DashboardState extends State<Dashboard> {
 
   handleSearch(String query) {
     Future<QuerySnapshot> users =
-        transac
-        .where("namaPenggadai", isGreaterThanOrEqualTo: query)
-        .get();
+        transac.where("namaPenggadai", isGreaterThanOrEqualTo: query).get();
     setState(() {
       searchResultFuture = users;
     });
@@ -40,9 +38,7 @@ class _DashboardState extends State<Dashboard> {
 
   clearSearch() {
     searchController.clear();
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   AppBar buildSearchfiled() {
@@ -189,20 +185,16 @@ class Result extends StatelessWidget {
     var tempo = DateFormat.yMMMEd().format(user.jatuhTempo!.toDate());
     String status = user.statusGadai;
 
-    Text istatus(){
-      if (status =="Lunas") {
+    Text istatus() {
+      if (status == "Lunas") {
         return Text(
           "Lunas",
-          style: TextStyle(
-            color: Colors.green.shade600
-          ),
+          style: TextStyle(color: Colors.green.shade600),
         );
       } else {
         return Text(
           "Belum\nLunas",
-          style: TextStyle(
-            color: Colors.red
-          ),
+          style: TextStyle(color: Colors.red),
         );
       }
     }
@@ -224,26 +216,26 @@ class Result extends StatelessWidget {
                   onPressed: () {
                     print(user.docId);
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UpdateGadai(
-                        docId: user.docId,
-                        namaPenggadai: user.namaPenggadai,
-                        nik: user.nik,
-                        bunga: user.bunga,
-                        jatuhTempo: user.jatuhTempo!.toDate(),
-                        jumlahGadai: user.jumlahGadai,
-                        namaBarang: user.namaBarang,
-                        statusGadai: user.statusGadai,
-                      ),
-                    ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UpdateGadai(
+                            docId: user.docId,
+                            namaPenggadai: user.namaPenggadai,
+                            nik: user.nik,
+                            bunga: user.bunga,
+                            jatuhTempo: user.jatuhTempo!.toDate(),
+                            jumlahGadai: user.jumlahGadai,
+                            namaBarang: user.namaBarang,
+                            statusGadai: user.statusGadai,
+                          ),
+                        ));
                   },
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () {
                     gadaiController.delTransacdoc(user.docId);
-    
+
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('data Deleted')));
                   },
